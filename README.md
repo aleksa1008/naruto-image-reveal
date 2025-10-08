@@ -5,31 +5,31 @@ Create the Game Base: I will create the main game container that takes up 80% of
 
 Divide the Base Area (Using CSS Grid): Inside the Game Base, I will create two main columns:
 
-The Picture Reveal Area:** I will assign 20% of the base width to this section (e.g., on the left side).
+The Picture Reveal Area: I will assign 20% of the base width to this section (e.g., on the left side).
 
-The Gameplay Area:* I will assign 60% of the base width to this section (e.g., on the right side).
+The Gameplay Area: I will assign 60% of the base width to this section (e.g., on the right side).
 
- Set up the Pictures:
+Set up the Pictures:
 
 I will load the Hidden Image and place it in the Picture Reveal Area. I will ensure this image is split into 3 logical sections for the level reveals.
 
 I will load the Cover Image and place it directly on top of the Hidden Image, completely obscuring it.
 
- Build the Instructions Screen:
+Build the Instructions Screen:
 
 I will create a layer that initially covers the entire Game Base.
 
 I will display the game Instructions on this layer, using clear text. This layer will block all game interaction until it is dismissed.
 
- Place the Controls:
- I will place the Start/Reset Button somewhere easily accessible (perhaps in the remaining 20% of the screen or near the Instructions). Its initial text will be "Start."
+Place the Controls:
+I will place the Start/Reset Button somewhere easily accessible (perhaps in the remaining 20% of the screen or near the Instructions). Its initial text will be "Start."
 
 Initialize Game Variables:
- I will set the starting Level to 1 and the Missed Ramen Counter to 0.
+I will set the starting Level to 1 and the Missed Ramen Counter to 0.
 
- Phase 2: Starting the Game and Core Loop
- Start Action:
- When the player clicks the "Start" button:
+Phase 2: Starting the Game and Core Loop
+Start Action:
+When the player clicks the "Start" button:
 
 I will immediately remove the Instructions Layer.
 

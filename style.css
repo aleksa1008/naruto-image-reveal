@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap");
+
+* {
+  font-family: Caveat;
+}
+.whole {
+  display: flex;
+}
+.paragraph {
+  font-size: 20px;
+  height: fit-content;
+}
+.instructions {
+  text-align: center;
+  background-color: rgb(223, 217, 217);
+  height: 610px;
+  width: 100%;
+}
+
+.image-wrapper {
+  display: flex;
+}
+.cover-overlay {
+  position: absolute;
+}
+.hidden-img {
+  width: 300px;
+  height: 600px;
+}
+.image-wrapper img {
+  width: 300px;
+  height: 600px;
+}
+
+.cover-overlay img {
+  width: 300px;
+  height: 200px;
+}
+
+.box {
+  position: absolute;
+  bottom: 0px;
+}
+.box img {
+  width: 120px;
+  height: 80px;
+}
+
+.game-screen {
+  display: none;
+  border: 5px solid black;
+  height: 600px;
+  position: relative;
+  width: 100%;
+}
+
+.start {
+  width: 120px;
+  height: 60px;
+}
+.fallingObject {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-image: url(ramen.webp);
+}
+.score {
+  font-size: 40px;
+}
