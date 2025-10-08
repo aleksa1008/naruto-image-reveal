@@ -52,6 +52,7 @@
   height: 600px;
   position: relative;
   width: 100%;
+  background-color: rgb(223, 217, 217);
 }
 
 .start {
@@ -63,6 +64,8 @@
   height: 50px;
   position: absolute;
   background-image: url(ramen.webp);
+  border-radius: 50%;
+  background-size: cover;
 }
 .score {
   font-size: 40px;
