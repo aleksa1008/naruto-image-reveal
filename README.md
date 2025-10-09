@@ -1,127 +1,110 @@
-Phase 1: Setting Up the Screen and Layout
-Define the Canvas: I will establish the total game window size where everything will appear.
 
-Create the Game Base: I will create the main game container that takes up 80% of the screen area. All other elements will live inside this container.
+# 🍜 Naruto Catching Game
 
-Divide the Base Area (Using CSS Grid): Inside the Game Base, I will create two main columns:
+![Screenshot of the game's main page with instructions](/Assets/Screenshot%202025-10-09%20at%2013.31.15.png "Screenshot")
 
-The Picture Reveal Area: I will assign 20% of the base width to this section (e.g., on the left side).
+A fun browser-based catching game where you help catch falling ramen bowls to reveal a hidden Naruto and Sasuke image!
 
-The Gameplay Area: I will assign 60% of the base width to this section (e.g., on the right side).
+[Play Game Here](https://aleksa1008.github.io/naruto-image-reveal/)
+## 🎮 Game Description
 
-Set up the Pictures:
+In this interactive game, players control a basket to catch falling ramen bowls. As you progress through three increasingly difficult levels, you'll gradually reveal a hidden image featuring Naruto and Sasuke. Miss too many ramen bowls, and it's game over!
 
-I will load the Hidden Image and place it in the Picture Reveal Area. I will ensure this image is split into 3 logical sections for the level reveals.
+## ✨ Features
 
-I will load the Cover Image and place it directly on top of the Hidden Image, completely obscuring it.
+- **3 Progressive Levels**: Each level increases the falling speed
+- **Image Reveal Mechanic**: Catch ramen to uncover parts of a hidden image
+- **Score Tracking**: Keep track of your catches
+- **Audio Effects**: Background music and sound effects for wins/losses
+- **Mouse-Controlled Gameplay**: Click and move your mouse to control the basket
+- **Naruto Theme**: Immersive Naruto-themed graphics and music
 
-Build the Instructions Screen:
+## 🎯 How to Play
 
-I will create a layer that initially covers the entire Game Base.
+1. **Start the Game**: Click the "START" button on the welcome screen
+2. **Control the Basket**: Click on the basket to activate movement, then move your mouse to position it
+3. **Catch Ramen**: Move the basket to catch falling ramen bowls
+4. **Avoid Misses**: You can miss 1 ramen, but missing 2 ends the game
+5. **Progress Through Levels**:
+   - **Level 1**: Catch 10 ramen (Speed: 2)
+   - **Level 2**: Catch 20 ramen total (Speed: 3)
+   - **Level 3**: Catch 30 ramen total (Speed: 4)
+6. **Win**: Catch all 30 ramen to reveal the complete image and win!
 
-I will display the game Instructions on this layer, using clear text. This layer will block all game interaction until it is dismissed.
+## 🛠️ Technologies Used
 
-Place the Controls:
-I will place the Start/Reset Button somewhere easily accessible (perhaps in the remaining 20% of the screen or near the Instructions). Its initial text will be "Start."
+- **HTML5**: Game structure
+- **CSS3**: Styling and animations
+- **Vanilla JavaScript**: Game logic and interactivity
+- **Google Fonts**: Caveat font family
 
-Initialize Game Variables:
-I will set the starting Level to 1 and the Missed Ramen Counter to 0.
+## 🚀 Installation & Setup
 
-Phase 2: Starting the Game and Core Loop
-Start Action:
-When the player clicks the "Start" button:
+1. **Clone or download** this repository
+2. **Ensure all assets** are in the `/Assets/` folder:
+   - Images: `mainpic.jpeg`, `cover2.jpg`, `box.png`, `ramen.webp`
+   - Audio: `Naruto - Afternoon of Konoha.mp3`, `win.mp3`, `cryha.mp3`
+3. **Open `index.html`** in a modern web browser
+4. **Start playing!**
 
-I will immediately remove the Instructions Layer.
+## 🎲 Game Mechanics
 
-I will change the button text to "Reset."
+### Scoring System
+- Each caught ramen = +1 point
+- Score milestones trigger level progression:
+  - 5 points: First image section revealed, speed increases to 3
+  - 10 points: Second image section revealed, speed increases to 4
+  - 15 points: Final image section revealed, YOU WIN!
 
-I will place the Basket object at a starting point at the bottom of the Gameplay Area.
+### Difficulty Progression
+- **Level 1** (0-5 points): Speed = 2px per frame
+- **Level 2** (5-10 points): Speed = 3px per frame
+- **Level 3** (10-15 points): Speed = 4px per frame
 
-I will initialize the master list of active ramen (an empty list for now).
+### Game Over Conditions
+- **Win**: Catch 15 ramen bowls
+- **Lose**: Miss 2 or more ramen bowls
 
-Handle Player Input: I will continuously listen for the player's control input (e.g., keyboard/mouse) and move the Basket horizontally within the boundaries of the Gameplay Area.
+### Controls
+- **Click** on the basket to toggle movement mode
+- **Move mouse** to position the basket horizontally
+- **Click** again or click elsewhere to stop movement
 
-Continuous Ramen Spawning (Falling Loop):
+## 🎨 Customization
 
-I will start a timed loop to create new Ramen objects at a random horizontal position at the top of the Gameplay Area.
+You can easily customize the game by modifying:
 
-I will control the frequency of this loop: the higher the current Level, the shorter the time interval between spawns (meaning ramen falls more frequently).
+- **Falling speed**: Change the `speed` variable in `game.js`
+- **Score milestones**: Adjust the score thresholds (5, 10, 15)
+- **Max misses**: Change `maxMisses` constant
+- **Falling frequency**: Modify the interval in `setInterval(createFallingObject, 1000)`
+- **Styling**: Edit colors, fonts, and layouts in `style.css`
 
-I will add each new ramen piece to the master list.
+## 🎵 Audio Credits
 
-Update All Ramen Positions: In every frame of the game:
+- Background Music: "Afternoon of Konoha" from Naruto OST
+- Sound effects included for win/lose scenarios
 
-I will go through every single Ramen object in the master list.
+## 🥅 Future enhancements
 
-I will update its vertical position to make it fall downward.
+- Making hidden image change after reloading the page
+- Making basket movable with keyboard
 
-The fall speed will be determined by the current Level (faster for higher levels).
+## 📝 Notes
 
-Check for Hits (Collision Detection): For every falling Ramen:
+- The game requires a modern browser with JavaScript enabled
+- Audio autoplay may be blocked by some browsers - user interaction starts the music
+- Game is optimized for desktop/laptop screens with mouse input
 
-IF the Ramen object’s position overlaps with the Basket's position (a successful catch):
+## 🐛 Known Issues
 
-I will remove that specific Ramen from the master list.
+- Mobile touch controls are not currently supported
+- Game dimensions are fixed (may not be fully responsive on all screen sizes)
 
-I will increment the current Level's Score.
+## 📄 License
 
-Check for Misses: For every falling Ramen:
+This is a fan-made game based on the Naruto series. All Naruto-related assets and music belong to their respective copyright holders.
 
-IF the Ramen falls past the bottom boundary of the Gameplay Area:
+---
 
-I will remove that specific Ramen from the master list.
-
-I will increment the Missed Ramen Counter by 1.
-
-I will immediately perform the Game Over Check.
-
-Phase 3: Level Progression and Game End
-Game Over Check:
-
-IF the Missed Ramen Counter is greater than 1:
-
-I will immediately stop all ramen spawning and movement.
-
-I will display the Game Over Screen (see step 5 below).
-
-ELSE, the game continues.
-
-Level Complete Check: I will define a target Score needed to complete the current level (e.g., 10 successful catches).
-
-IF the current Score reaches the target:
-
-I will stop all current ramen spawning.
-
-I will trigger the Picture Reveal.
-
-Picture Reveal: I will remove the section of the Cover Image corresponding to the current Level (e.g., for Level 1, I remove section 1).
-
-Game Win Check:
-
-IF the newly completed Level is 3 (meaning all sections are uncovered):
-
-I will display the Game Win Screen (see step 6 below).
-
-ELSE (if Level 1 or 2 was just finished):
-
-I will increment the Level by 1.
-
-I will reset the Score to 0.
-
-I will resume the game loop with the new, faster fall speed.
-
-Display Game Over: I will create a layer that covers the entire Game Base and display the text "GAME OVER." I will also display the Picture of Naruto Crying on this screen.
-
-Display Game Win: I will create a layer that covers the entire Game Base and display the text "YOU WIN" with a Fireworks animation overlay.
-
-Reset Game: When the player clicks the "Reset" button (or the "Start" button, which has now changed to "Reset"):
-
-I will clear any Game Over/Win screens.
-
-I will reset the Missed Ramen Counter to 0.
-
-I will re-apply the full Cover Image to the Picture Reveal Area.
-
-I will change the button text back to "Start."
-
-I will display the initial Instructions Layer again.
+**Enjoy the game and good luck catching all the ramen! 🍜✨**

@@ -90,15 +90,15 @@ function createFallingObject() {
       object.remove();
       clearInterval(objectInterval);
     }
-    if (score === 5) {
+    if (score === 10) {
       firstPic.remove("img");
       speed = 3;
     }
-    if (score === 10) {
+    if (score === 20) {
       secondPic.remove("img");
       speed = 4;
     }
-    if (score === 15) {
+    if (score === 30) {
       thirdPic.remove("img");
       gameScreen.style.display = "none";
       wonGame.style.display = "block";
