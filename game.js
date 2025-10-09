@@ -95,11 +95,11 @@ function createFallingObject() {
       speed = 3;
     }
     if (score === 20) {
-      secondPic.remove("img");
+      thirdPic.remove("img");
       speed = 4;
     }
     if (score === 30) {
-      thirdPic.remove("img");
+      secondPic.remove("img");
       gameScreen.style.display = "none";
       wonGame.style.display = "block";
       mainSound.pause();
