@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
     <title>Naruto catching game</title>
   </head>
   <body>
@@ -11,19 +12,19 @@
       <div class="image-wrapper" id="test">
         <img
           id="hiddenImg"
-          src="mainpic.jpeg"
+          src="/Assets/mainpic.jpeg"
           alt="Hidden image which half is naruto and other alf sasuke"
           class="hidden-img"
         />
         <div id="cover" class="cover-overlay">
           <div class="cover-section">
-            <img src="cover2.jpg" alt="cover picture of naruto and sasuke fighting" />
+            <img src="/Assets/cover2.jpg" class="firstpic" alt="cover picture of naruto and sasuke fighting" />
           </div>
           <div class="cover-section">
-            <img src="cover2.jpg" alt="cover picture of naruto and sasuke fighting" />
+            <img src="/Assets/cover2.jpg" class="secondpic" alt="cover picture of naruto and sasuke fighting" />
           </div>
           <div class="cover-section">
-            <img src="cover2.jpg" alt="cover picture of naruto and sasuke fighting" />
+            <img src="/Assets/cover2.jpg" class="thirdpic" alt="cover picture of naruto and sasuke fighting" />
           </div>
         </div>
       </div>
@@ -39,20 +40,26 @@
           hidden and go to the next level.<br />
           If one ramen falles next to the basket you are good, but if the second
           one falls its Game Over.<br />
-          Try catching them all and reveal the image. GOOD LUCK!
+          Try catching them all and reveal the image.<br/>
+          To move the basket you have to click on it.<br/>GOOD LUCK! 😉
         </p>
         <button class="start" id="start-button">START</button>
       </div>
       <div class="game-screen" id="game-screen">
+        <audio class="mainSound" src="/Assets/Naruto - Afternoon of Konoha.mp3" ></audio>
         <div class="box" id="box" alt="image of a box">
-          <img src="box.png" >
+          <img src="/Assets/box.png" >
         </div>
         <div class="score">Score: 0</div>
     </div>
-<img class="lost-game" src="https://media1.tenor.com/m/zvvCAIkgpYEAAAAC/naruto-crying.gif"
- alt="naruto crying gif" hidden>
-<img class="won-game" src="https://media1.tenor.com/m/nEe0t726IZoAAAAd/naruto.gif" 
-alt="naruto 6 path mode gif" hidden>
+    <div class="lostGame">
+      <audio class="loseSound" src="/Assets/cryha.mp3" ></audio>
+      <p class="text">YOU LOSE! TRY AGAIN?</p>
+  </div>
+ <div class="wonGame">
+  <audio class="winSound" src="/Assets/win.mp3" ></audio>
+<p class="text">YOU WON! CONGRATULATIONS</p>
+</div>
      <script src="/game.js"></script>
   </body>
 </html>

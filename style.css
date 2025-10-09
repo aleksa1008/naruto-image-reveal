@@ -7,7 +7,7 @@
   display: flex;
 }
 .paragraph {
-  font-size: 20px;
+  font-size: 30px;
   height: fit-content;
 }
 .instructions {
@@ -29,7 +29,7 @@
 }
 .image-wrapper img {
   width: 300px;
-  height: 600px;
+  height: 100%;
 }
 
 .cover-overlay img {
@@ -58,15 +58,39 @@
 .start {
   width: 120px;
   height: 60px;
+  font-size: 20px;
 }
 .fallingObject {
   width: 50px;
   height: 50px;
   position: absolute;
-  background-image: url(ramen.webp);
+  background-image: url(/Assets/ramen.webp);
   border-radius: 50%;
   background-size: cover;
 }
 .score {
   font-size: 40px;
+}
+.lostGame {
+  font-size: 30px;
+  text-align: center;
+  height: 610px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(https://media1.tenor.com/m/zvvCAIkgpYEAAAAC/naruto-crying.gif);
+  display: none;
+  background-size: 100% 100%;
+}
+
+.wonGame {
+  font-size: 30px;
+  display: none;
+  background-image: url(https://media1.tenor.com/m/nEe0t726IZoAAAAd/naruto.gif);
+  text-align: center;
+  background-color: rgb(223, 217, 217);
+  height: 610px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }

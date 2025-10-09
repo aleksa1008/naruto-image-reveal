@@ -5,12 +5,20 @@ const startButton = document.getElementById("start-button");
 const instructionsScreen = document.getElementById("instructions");
 const gameScreen = document.getElementById("game-screen");
 const box = document.getElementById("box");
-const scoreDisplay = document.querySelector(".score"); 
-
+const scoreDisplay = document.querySelector(".score");
+const firstPic = document.querySelector(".firstpic");
+const secondPic = document.querySelector(".secondpic");
+const thirdPic = document.querySelector(".thirdpic");
+const wonGame = document.querySelector(".wonGame");
+const lostGame = document.querySelector(".lostGame");
+const mainSound = document.querySelector(".mainSound");
+const winSound = document.querySelector(".winSound");
+const loseSound = document.querySelector(".loseSound");
+let speed = 2;
 // ==========================
 // GAME STATE VARIABLES
 // ==========================
-let isDragging = false;  // 🟢 TOGGLED (instead of being tied to mouse hold)
+let isDragging = false; 
 let missedCount = 0;
 const maxMisses = 2;
 let score = 0;
@@ -20,21 +28,18 @@ let fallingInterval;
 // BOX MOVEMENT (TOGGLE MODE)
 // ==========================
 
-// 🔴 REMOVED: the old mousemove logic tied to box & gameScreen required holding down the mouse
-// 🟢 ADDED: click-to-toggle logic — first click picks up, second click drops
 box.addEventListener("click", (e) => {
-  e.stopPropagation(); // 🟢 prevents clicks from triggering the document listener
-  isDragging = !isDragging; // 🟢 toggles dragging on/off
+  e.stopPropagation();
+  isDragging = !isDragging; 
 
-  // 🟢 Visual feedback
+  
   if (isDragging) {
-  box.style.cursor = "grabbing";
-} else {
-  box.style.cursor = "grab";
-}
+    box.style.cursor = "grabbing";
+  } else {
+    box.style.cursor = "grab";
+  }
 });
 
-// 🟢 Optional: click outside box to stop dragging
 document.addEventListener("click", (e) => {
   if (isDragging && e.target !== box) {
     isDragging = false;
@@ -42,15 +47,16 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// 🟢 Updated: box follows mouse only when dragging is active
 document.addEventListener("mousemove", (e) => {
   if (!isDragging) return;
 
-  const gameRect = gameScreen.getBoundingClientRect(); // 🟢 use relative positioning
+  const gameRect = gameScreen.getBoundingClientRect(); 
   const newLeft = e.clientX - gameRect.left - box.clientWidth / 2;
 
-  // 🟢 keeps box within screen bounds
-  const boundedLeft = Math.max(0, Math.min(newLeft, gameScreen.clientWidth - box.clientWidth));
+  const boundedLeft = Math.max(
+    0,
+    Math.min(newLeft, gameScreen.clientWidth - box.clientWidth)
+  );
   box.style.left = boundedLeft + "px";
 });
 
@@ -60,44 +66,61 @@ document.addEventListener("mousemove", (e) => {
 
 function createFallingObject() {
   const object = document.createElement("div");
-  object.classList.add("fallingObject"); // 🟢 FIXED: was "fallingObjects" (plural) before
-  object.style.left = `${Math.random() * (gameScreen.clientWidth - 50)}px`; // 🟢 switched from window.innerWidth
+  object.classList.add("fallingObject");
+  object.style.left = `${Math.random() * (gameScreen.clientWidth - 50)}px`; 
   object.style.top = "0px";
   gameScreen.appendChild(object);
 
-  let objectPosition = 0; // 🟢 moved inside function so each ramen falls independently
+  let objectPosition = 0;
 
   const objectInterval = setInterval(() => {
-    objectPosition += 2;
+    objectPosition += speed;
     object.style.top = objectPosition + "px";
 
     const objectRect = object.getBoundingClientRect();
     const boxRect = box.getBoundingClientRect();
 
-    // 🟢 FIXED typo: "lef1" → "left"
     if (
       objectRect.bottom >= boxRect.top &&
       objectRect.left <= boxRect.right &&
       objectRect.right >= boxRect.left
     ) {
       score++;
-      scoreDisplay.textContent = `Score: ${score}`; // 🟢 FIXED: was overwriting score variable with text
+      scoreDisplay.textContent = `Score: ${score}`;
       object.remove();
       clearInterval(objectInterval);
     }
-
-    // 🟢 Added missed ramen logic
+    if (score === 5) {
+      firstPic.remove("img");
+      speed = 3;
+    }
+    if (score === 10) {
+      secondPic.remove("img");
+      speed = 4;
+    }
+    if (score === 15) {
+      thirdPic.remove("img");
+      gameScreen.style.display = "none";
+      wonGame.style.display = "block";
+      mainSound.pause();
+      winSound.play();
+    }
     if (objectPosition > gameScreen.clientHeight) {
       missedCount++;
       object.remove();
       clearInterval(objectInterval);
-
-      if (missedCount >= maxMisses) {
-        clearInterval(fallingInterval);
-        alert("Game Over!");
-      }
     }
-  }, 10); // 🟢 smoother timing (was 2ms, way too fast)
+    
+    else if (missedCount >= maxMisses) {
+      clearInterval(fallingInterval);
+      gameScreen.style.display = "none";
+      wonGame.style.display = "none";
+      lostGame.style.display = "block";
+      mainSound.pause();
+      loseSound.play();
+      loseSound.volume= 0.3
+    }
+  }, 10);
 }
 
 // ==========================
@@ -107,7 +130,9 @@ function createFallingObject() {
 startButton.addEventListener("click", () => {
   instructionsScreen.style.display = "none";
   gameScreen.style.display = "block";
+  mainSound.play();
+  mainSound.volume= 0.2;
 
-  // 🟢 moved interval inside Start button so ramen only fall after starting the game
+  
   fallingInterval = setInterval(createFallingObject, 1000);
 });
